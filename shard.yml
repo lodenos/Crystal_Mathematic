@@ -1,0 +1,9 @@
+name: vector
+version: 0.1.0
+
+authors:
+  - lodenos <nikolaiilodenos@gmail.com>
+
+crystal: 1.4.0
+
+license: MIT
