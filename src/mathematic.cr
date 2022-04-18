@@ -1,3 +1,3 @@
-module Vector
-  VERSION = "0.1.0"
-end
+require "./calculus/calculus"
+require "./function/function"
+require "./operation/operation"
