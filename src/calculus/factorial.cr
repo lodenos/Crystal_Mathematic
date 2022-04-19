@@ -1,22 +1,22 @@
 require "big"
 
 module Mathematic::Calculus
-  # TODO: Code test and test BigInt
-  {% begin %}
-    {% types = %w(UInt8 UInt16 UInt32 UInt64 UInt128 BigInt)%}
-    {% for type in types %}
-      def self.factorial(value : {{ type.id }}) : {{ type.id }}
-        zero = {{ type.id }}.new "0"
-        one = {{ type.id }}.new "1"
-        result = one
-        return result if value == zero
-        while value != zero
-          result = result * value
-          value -= one
-        end
 
-        result
-      end
-    {% end %}
-  {% end %}
+  FACTORIAL_CACHE = Array(BigInt).new(1, BigInt.new(1))
+  FACTORIAL_HEIGHEST = [BigInt.new 0]
+
+  def self.factorial(value : BigInt) : BigInt
+    return FACTORIAL_CACHE[value.to_i] unless value > FACTORIAL_HEIGHEST[0]
+    index = FACTORIAL_HEIGHEST[0]
+    result = FACTORIAL_CACHE[index.to_i]
+    while index < value
+      index += 1
+      result = result * index
+      # Cache It
+      FACTORIAL_CACHE << result
+      FACTORIAL_HEIGHEST[0] = index
+    end
+
+    result
+  end
 end

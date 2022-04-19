@@ -15,4 +15,11 @@ end
 radicant = BigDecimal.new "8"
 degree = BigDecimal.new "3"
 
-puts Mathematic::Operation.nth_root radicant, degree
+
+require "benchmark"
+
+bench = Benchmark.memory do
+  a = Array(Int32).new
+end
+puts bench
+# puts Mathematic::Operation.nth_root radicant, degree
